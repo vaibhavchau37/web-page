@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Social Media Iframe Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .btn-container {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #iframeContainer {
+            position: relative;
+            width: 90%;
+            height: 500px;
+            margin: 20px auto;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #444;
+            border-radius: 10px;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #4CAF50;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 2;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+
+        .dark-mode h1 {
+            background-color: #000;
+        }
+
+        .dark-mode button {
+            background-color: #222;
+            color: #fff;
+        }
+
+        .dark-mode button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Social Media Viewer with Iframe</h1>
+
+    <!-- Theme Toggle -->
+    <button onclick="toggleTheme()">Toggle Light/Dark Mode</button>
+
+    <!-- Social Media Buttons -->
+    <div class="btn-container">
+        <button onclick="loadPage('https://www.instagram.com')">Instagram</button>
+        <button onclick="loadPage('https://www.facebook.com')">Facebook</button>
+        <button onclick="loadPage('https://www.twitter.com')">Twitter</button>
+        <button onclick="loadPage('https://www.youtube.com')">YouTube</button>
+        <button onclick="loadPage('https://www.linkedin.com')">LinkedIn</button>
+        <button onclick="loadPage('https://www.reddit.com')">Reddit</button>
+    </div>
+
+    <!-- Iframe and loader -->
+    <div id="iframeContainer">
+        <div class="loader" id="loader"></div>
+        <iframe id="mainIframe" src="https://www.instagram.com" onload="hideLoader()"></iframe>
+    </div>
+
+    <!-- Extra Feature: YouTube Video -->
+    <h2>Watch Our Video</h2>
+    <iframe width="90%" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" title="YouTube video"
+        allowfullscreen>
+    </iframe>
+
+    <script>
+        function loadPage(url) {
+            const iframe = document.getElementById("mainIframe");
+            const loader = document.getElementById("loader");
+            loader.style.display = "block";
+            iframe.src = url;
+        }
+
+        function hideLoader() {
+            document.getElementById("loader").style.display = "none";
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+
+</body>
+
+</html>
